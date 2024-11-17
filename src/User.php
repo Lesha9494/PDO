@@ -31,6 +31,11 @@ class User
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                return "Имя успешно изменено";
+            } else {
+                return "Ошибка";
+            }
         } else {
             return "Пользователь не найден";
         }
