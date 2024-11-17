@@ -24,14 +24,13 @@ class User
         return $count > 0;
     }
 
-    public function update(int $id, string $name)
+    public function update(int $id, string $name): string
     {
         if ($this->isUserExists($id)) {
             $sql = "UPDATE users SET name = :name WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':id', $id);
-            return $stmt->execute();
         } else {
             return "Пользователь не найден";
         }
